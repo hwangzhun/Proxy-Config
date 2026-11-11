@@ -258,8 +258,22 @@ function main(config) {
     })
   }
 
-  // 特殊策略: OpenAI (需 Rule Provider)
+  // 特殊策略: 国外 AI（含 Apple Intelligence，需 Rule Provider）
   if (ruleOptions.openai) {
+    // Apple Intelligence
+    rules.push(
+      'DOMAIN-SUFFIX,gateway.icloud.com,国外AI',
+      'DOMAIN-SUFFIX,apple-relay.apple.com,国外AI',
+      'DOMAIN-SUFFIX,apple-relay.fastly-edge.com,国外AI',
+      'DOMAIN-SUFFIX,apple-relay.cloudflare.com,国外AI',
+      'DOMAIN-SUFFIX,guzzoni.apple.com,国外AI',
+      'DOMAIN-SUFFIX,cp4.cloudflare.com,国外AI',
+      'DOMAIN-SUFFIX,gspe1-ssl.ls.apple.com,国外AI',
+      'DOMAIN-SUFFIX,smoot.apple.com,国外AI',
+      'DOMAIN-SUFFIX,apple-relay.akamaized.net,国外AI',
+      'DOMAIN-SUFFIX,apple-relay.mask.apple-dns.net,国外AI',
+      'DOMAIN-SUFFIX,aapps.mzstatic.com,国外AI',
+    )
     rules.push('DOMAIN-SUFFIX,grazie.ai,国外AI', 'DOMAIN-SUFFIX,grazie.aws.intellij.net,国外AI', 'RULE-SET,ai,国外AI')
     ruleProviders.set('ai', {
       ...ruleProviderCommon, behavior: 'classical', format: 'text',
